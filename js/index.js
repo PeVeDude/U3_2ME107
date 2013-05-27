@@ -1,8 +1,18 @@
 $(document).ready(function () {
 	$("#group-wise").click(function() {
-	  $("#rate-grp").css("display", "block");
+		if(!$("#rate-grp").is(":visible")) {
+		  $("#rate-grp").css("display", "block");
+		}
+		else if($("#rate-grp").is(":visible")) {
+		  $("#rate-grp").css("display", "none");
+		}
 	});
 	$("#individually").click(function() {
-	  $("#rate-ind").css("display", "block");
+	  if(!$("#rate-ind").is(":visible")) {
+		  $("#rate-ind").css("display", "block");
+		}
+		else if($("#rate-ind").is(":visible")) {
+		  $("#rate-ind").css("display", "none");
+		}
 	});
 });
