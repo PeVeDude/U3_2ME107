@@ -1,0 +1,30 @@
+html, body{
+	margin: 0 0 0 20px;
+	padding: 0;
+}
+
+img {
+	max-width: inherit !important;
+}
+
+body {
+	background:#efefef !important;
+}
+
+#rate-grp {
+	display:none;
+}
+
+#rate-ind {
+	display:none;
+}
+
+h4 {
+	margin-top:10px;
+	margin-bottom:0px;
+}
+
+.clearfix {
+	clear:both;
+}
+

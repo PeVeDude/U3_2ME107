@@ -1,8 +1,8 @@
 $(document).ready(function () {
 	$("#group-wise").click(function() {
-	  alert("Handler for .click() called.");
+	  $("#rate-grp").css("display", "block");
 	});
 	$("#individually").click(function() {
-	  alert("Handler for .click() called.");
+	  $("#rate-ind").css("display", "block");
 	});
 });
