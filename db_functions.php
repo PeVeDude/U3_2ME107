@@ -2,7 +2,7 @@
 
 // Ska en kontakt mellan servern och dess databas
 function open_db() {
-	require "db_var.inc"; // hämta databas variablerna
+	require "db_var.php"; // hämta databas variablerna
 		
 	if (!($link = mysql_connect($db_server, $db_login, $db_password))) { // Ansluter till databasservern
 		echo "<p>Couldn't connect to the mysql server: <br>\n".

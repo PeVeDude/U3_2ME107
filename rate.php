@@ -1,3 +1,9 @@
+<?php
+	error_reporting(E_ALL);
+	require_once "rate.code.php";
+
+	$rate = new rate();
+?>
 <html>
  	<head>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -16,6 +22,10 @@
 		<p><div id="individually"  class='btn btn-large' style='margin-bottom:5px; margin-right:5px; padding-left:7px; padding-right:7px;'>Rate individually</div></p>
 		
 		<div id="rate-ind">HEELLLLLOLOOOO</div>
+		<?php if(@$_GET['dishes']) {
+			echo $rate->getDishes($_GET['dishes']);
+		}
+		?>
 		<!--<b>Page where ppl rate stuff</b>
 		<input type="checkbox" id="box1" value="1">
 		<input type="checkbox" id="box2" value="2">
