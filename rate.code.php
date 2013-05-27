@@ -15,14 +15,14 @@ class rate
 	{
 		/*$this->initDatabase();
 		$this->logout();*/
-
+		$this->MySQL = open_db();
 	}
 		
 	/**
 	 * Fuktionen upprättar förbindelse med databasen, för mer 
 	 * information se databasklassen(Database.class.php).
 	 */
-	public function initDatabase()
+	/*public function initDatabase()
 	{
 		$hostname = config::DB_HOSTNAME;
 		$username = config::DB_USERNAME;
@@ -31,7 +31,7 @@ class rate
 			
 		$this->MySQL = new Database();
 		$this->MySQL->connect($hostname, $username, $password, $database);
-	}
+	}*/
 
 	/* Funktionen tar emot parametrarna från
 	 * inputfälten i login.php och skickar en
@@ -40,12 +40,15 @@ class rate
 	 */
 	 
 	public function getDishes($dishes) {	
-		$output = "{$dishes}";
-		$dbQuery	=	"SELECT name FROM dishes WHERE D_ID={$dishes}";
-			$result		=	$this->MySQL->getArray($dbQuery);
-			$result		=	$result['interests'];
-			return		$result;
-		echo $output;
+		//$output = "{$dishes}";
+		$dishArray		=	explode(",", $dishes);
+		foreach ($dishArray as &$dish) {
+			$dbQuery	=	"SELECT name FROM dishes WHERE D_ID={$dish}";
+			$result	= query_db($dbQuery,$this->MySQL);
+			$dishName = mysql_fetch_row($result); 
+			$dishName = "{$dishName[0]} <br/>";
+			echo $dishName;
+		}
 	}
 }
 

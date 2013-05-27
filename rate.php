@@ -7,7 +7,7 @@
 <html>
  	<head>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-		<meta http-equiv="content-type" content="text/html; charset=UTF8">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<title>U3_2ME107 Rate</title>
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -17,15 +17,24 @@
 	<body>
 		<p><div id="group-wise" class='btn btn-large' style='margin-bottom:5px; margin-right:5px; padding-left:7px; padding-right:7px;'>Rate group-wise</div></p>
 		
-		<div id="rate-grp">NEHEEEEEE</div>
+		<div id="rate-grp">
+			<?php
+				if(@$_GET['dishes']) {
+					$rate->getDishes($_GET['dishes']);
+				}
+			?>
+		</div>
 
 		<p><div id="individually"  class='btn btn-large' style='margin-bottom:5px; margin-right:5px; padding-left:7px; padding-right:7px;'>Rate individually</div></p>
 		
-		<div id="rate-ind">HEELLLLLOLOOOO</div>
-		<?php if(@$_GET['dishes']) {
-			echo $rate->getDishes($_GET['dishes']);
-		}
-		?>
+		<div id="rate-ind">
+			<?php
+				if(@$_GET['dishes']) {
+					$rate->getDishes($_GET['dishes']);
+				}
+			?>
+		</div>
+		
 		<!--<b>Page where ppl rate stuff</b>
 		<input type="checkbox" id="box1" value="1">
 		<input type="checkbox" id="box2" value="2">
