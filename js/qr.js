@@ -7,8 +7,11 @@ function qrReq() {
 	var meal5 = document.getElementById('meal5').value;
 	var meal6 = document.getElementById('meal6').value;
 
-	qrString = "";
+	var rateUrl = "";
 
-	alert(meal1 + meal2 + meal3 + meal4 + meal5 + meal6);
+	var qrString = "https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=" + meal1 + meal2 + meal3 + meal4 + meal5 + meal6;
+
+	//alert(meal1 + meal2 + meal3 + meal4 + meal5 + meal6);
+	alert(qrString);
 
 }
