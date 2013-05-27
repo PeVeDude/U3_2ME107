@@ -43,11 +43,13 @@ class rate
 		//$output = "{$dishes}";
 		$dishArray		=	explode(",", $dishes);
 		foreach ($dishArray as &$dish) {
-			$dbQuery	=	"SELECT name FROM dishes WHERE D_ID={$dish}";
-			$result	= query_db($dbQuery,$this->MySQL);
-			$dishName = mysql_fetch_row($result); 
-			$dishName = "{$dishName[0]} <br/>";
-			echo $dishName;
+			if(!$dish == "") {
+				$dbQuery	=	"SELECT name FROM dishes WHERE D_ID={$dish}";
+				$result	= query_db($dbQuery,$this->MySQL);
+				$dishName = mysql_fetch_row($result); 
+				$dishName = "{$dishName[0]} <br/>";
+				echo $dishName;
+			}
 		}
 	}
 }
