@@ -14,7 +14,7 @@
     
     {
 	    
-	    $_SESSION['user_id'] = mysql_result($result, 0, 'M_ID');
+	    $_SESSION['user_id'] = mysql_result($result, 0, 'U_ID');
 	    header('Location: chefView.php');
             
     }
