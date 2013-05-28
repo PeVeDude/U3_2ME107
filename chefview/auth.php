@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    require "db_functions.php";
+    require "../db_functions.php";
     $db = open_db();
     $u = mysql_real_escape_string($_POST['username']); //Hämtar användarnamnet från loginsidan
     $p = mysql_real_escape_string($_POST['pass']); //Hämtar lösenordet från loginsidan
@@ -15,7 +15,7 @@
     {
 	    
 	    $_SESSION['user_id'] = mysql_result($result, 0, 'M_ID');
-	    header('Location: review.php');
+	    header('Location: chefView.php');
             
     }
 	//ifall användaren inte fanns skickas man till loginsidan med login satt till failed.
