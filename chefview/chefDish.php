@@ -21,6 +21,7 @@
     <body>
     	<div id='header'>
                <h1><a href='chefView.php'>FoodReview</a></h1>
+               <a href='logout.php'> Logga ut </a>
         </div>
         <div id="dishes">
             <?php echoDish() ?>
