@@ -1,7 +1,7 @@
 <?php 
 
 // IMPORTS
-require_once "db_functions.php";
+require_once "../db_functions.php";
 
 class rate
 {
@@ -43,17 +43,20 @@ class rate
 		//$output = "{$dishes}";
 		$dishArray		=	explode(",", $dishes);
 		$i = 1;
+		$output = "<form>";
 		foreach ($dishArray as &$dish) {
 
 			if(!$dish == "") {
 				$dbQuery	=	"SELECT name FROM dishes WHERE D_ID={$dish}";
 				$result	= query_db($dbQuery,$this->MySQL);
 				$dishName = mysql_fetch_row($result); 
-				$dishName = "{$dishName[0]} <input type='checkbox' id='checkbox".$i."' value='checkbox".$i."'><div class='star".$i."' style='display:none'></div><br/>";
+				$dishName = "<div class='".$i."'>{$dishName[0]} <input type='checkbox' id='checkbox".$i."' value='checkbox".$i."'><div class='star".$i."' style='display:none'></div></div><br/>";
 				echo $dishName;
 				$i++;
 			}
 		}
+		$output = "</form>";
+		echo $output;
 	}
 }
 

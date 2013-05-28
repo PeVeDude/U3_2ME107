@@ -9,12 +9,12 @@
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<title>U3_2ME107 Rate</title>
-		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="../css/style.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
-		<script type="text/javascript" src="js/jquery.raty.js"></script>
+		<script type="text/javascript" src="../js/index.js"></script>
+		<script type="text/javascript" src="../js/jquery.raty.js"></script>
 		
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
 	</head>
 	<body>
 		<p><div id="group-wise" class='btn btn-large' style='margin-bottom:5px; margin-right:5px; padding-left:7px; padding-right:7px;'>Rate group-wise</div></p>
