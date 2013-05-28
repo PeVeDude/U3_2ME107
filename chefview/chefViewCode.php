@@ -3,7 +3,7 @@
     //Globala variabler
     global $db;
     $db = open_db(); //Databasen öppnas
-    
+
     function echoDishes()
     {
     	global $db;
@@ -24,6 +24,7 @@
 		    }
     		echo "<div class='dish'><a href='chefDish.php?id=" . $res->D_ID . "'>" . $res->name . "</a> " . $avg;
 			echo "</div>";
+			echo "<div class='stars'></div>";
 			
     		}//End while
 		

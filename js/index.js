@@ -19,6 +19,9 @@ $(document).ready(function () {
 		half: true
 	});
 
+	$('.stars').raty({
+		half: true
+	});
 	/*$('#rate-ind input[type=checkbox]').each(function (i) {
 		i++;
 		console.log($('.checkbox'+ i +''));
