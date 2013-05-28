@@ -1,7 +1,5 @@
 <?php
-    require"db_functions.php";
-    global $db;
-    $db = open_db();
+    require('indexCode.php');
 ?>
 
 
@@ -11,16 +9,14 @@
 		<title>U3_2ME107 Index</title>
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="js/jquery.raty.js"></script>
+		<script type="text/javascript" src="js/jquery.raty2.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 	</head>
 	<body>
-		<div id="">
-			<h1>All rated meals</h1>
-			<?php
-				
-			?>
+		<div id="dishes">
+			<h1><a href='index.php'>Menu</a></h1>
+			<?php echoDishes() ?>
 		</div>
 	</body>
 </html>

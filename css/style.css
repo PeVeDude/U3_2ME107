@@ -19,6 +19,10 @@ body {
 	display:none;
 }
 
+.star {
+	display:none;
+}
+
 h4 {
 	margin-top:10px;
 	margin-bottom:0px;
@@ -26,5 +30,9 @@ h4 {
 
 .clearfix {
 	clear:both;
+}
+
+.dish {
+	border-bottom: dotted 1px;
 }
 
