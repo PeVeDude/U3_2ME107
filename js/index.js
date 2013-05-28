@@ -33,6 +33,9 @@ $(document).ready(function () {
 					$('.star'+ (j+1) +'').raty({
 						score: starArray['.star'+ (j+1)],
 						half: true,
+						starHalf : '../img/star-half-big.png',
+						starOff  : '../img/star-off-big.png',
+						starOn   : '../img/star-on-big.png',
 						click: function(score, evt) {
 						    starArray['.star'+ (j+1)] = score;
 						 }
@@ -50,6 +53,7 @@ $(document).ready(function () {
 		
 			else if($("."+(j+1)+" input:checked").is(':checked') == false){
 				$('.star'+ (j+1) +'').css("display", "none");
+
 			}
 		});
 	});

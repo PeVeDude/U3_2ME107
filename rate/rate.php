@@ -37,6 +37,13 @@
 			?>
 		</div>
 		<div id="rateDiv">
+			<?php
+				if(@$_GET['dish']) {
+					$url_link = htmlspecialchars($HTTP_SERVER_VARS['QUERY_STRING']);
+					$array	= explode("&amp;", $url_link);
+					$rate->addDishes($array);
+				}
+			?>
 		</div>
 	</body>
 </html>
