@@ -42,13 +42,16 @@ class rate
 	public function getDishes($dishes) {	
 		//$output = "{$dishes}";
 		$dishArray		=	explode(",", $dishes);
+		$i = 1;
 		foreach ($dishArray as &$dish) {
+
 			if(!$dish == "") {
 				$dbQuery	=	"SELECT name FROM dishes WHERE D_ID={$dish}";
 				$result	= query_db($dbQuery,$this->MySQL);
 				$dishName = mysql_fetch_row($result); 
-				$dishName = "{$dishName[0]} <br/>";
+				$dishName = "{$dishName[0]} <input type='checkbox' id='checkbox".$i."' value='checkbox".$i."'><div class='star".$i."' style='display:none'></div><br/>";
 				echo $dishName;
+				$i++;
 			}
 		}
 	}

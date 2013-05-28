@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/jquery.raty.js"></script>
+		
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 	</head>
 	<body>
@@ -34,15 +36,6 @@
 				}
 			?>
 		</div>
-		
-		<!--<b>Page where ppl rate stuff</b>
-		<input type="checkbox" id="box1" value="1">
-		<input type="checkbox" id="box2" value="2">
-		<input type="checkbox" id="box3" value="3">
-		<input type="checkbox" id="box4" value="4">
-		<input type="checkbox" id="box5" value="5">
-		<b>Page where ppl rate stuff</b>
-		-->
 		<div id="rateDiv">
 		</div>
 	</body>
