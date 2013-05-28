@@ -16,10 +16,8 @@ $(document).ready(function () {
 		}
 	});
 
-	$('.stars').raty({
-		half: true,
-		score: 4.5,
-		readOnly: true
+	$('.starGrp').raty({
+		half: true
 	});
 	
 	var starArray = new Array();

@@ -22,7 +22,7 @@
 		<div id="rate-grp">
 			<?php
 				if(@$_GET['dishes']) {
-					$rate->getDishes($_GET['dishes']);
+					$rate->getDishesGroup($_GET['dishes']);
 				}
 			?>
 		</div>
@@ -42,6 +42,11 @@
 					$url_link = htmlspecialchars($HTTP_SERVER_VARS['QUERY_STRING']);
 					$array	= explode("&amp;", $url_link);
 					$rate->addDishes($array);
+				}
+				else if(@$_GET['dishGrp']) {
+					$url_link = htmlspecialchars($HTTP_SERVER_VARS['QUERY_STRING']);
+					$array	= explode("&amp;", $url_link);
+					$rate->addGrpRating($array);
 				}
 			?>
 		</div>
