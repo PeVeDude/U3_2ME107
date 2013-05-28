@@ -19,13 +19,20 @@
 		    $qry = "SELECT AVG(rating) FROM jn222bd.dishsingle WHERE D_ID = " . $res->D_ID;
 		    $avgresult = query_db($qry,$db);
 		    $avg =  mysql_result($avgresult, 0, 'AVG(rating)');
-		    if($avg == ""){
-		    	$avg = "Ej betygsatt";
-		    }
-    		echo "<div class='dish'><a href='chefDish.php?id=" . $res->D_ID . "'>" . $res->name . "</a> " . $avg;
+		    
+    		echo "<div class='dish'><a href='chefDish.php?id=" . $res->D_ID . "'>" . $res->name . "</a> ";
+    		echo "<div class='stars". $res->D_ID ."'></div>";
 			echo "</div>";
-			echo "<div class='stars'></div>";
 			
+			if($avg == ""){
+		    	$avg = 0;
+		    	echo "Not rated";
+		    }
+			echo "<script> $('.stars" . $res->D_ID . "').raty({
+				half: true,
+				score: " . $avg . ",
+				readOnly: true
+				}); </script>";
     		}//End while
 		
 	    }//End if  

@@ -17,7 +17,9 @@ $(document).ready(function () {
 	});
 
 	$('.stars').raty({
-		half: true
+		half: true,
+		score: 4.5,
+		readOnly: true
 	});
 	
 	var starArray = new Array();

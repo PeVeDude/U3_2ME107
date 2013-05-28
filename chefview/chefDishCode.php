@@ -9,7 +9,7 @@
         $did = $_GET['id']; 
     }
 
-    $qry = "SELECT name FROM jn222bd.dishes";
+    $qry = "SELECT name FROM jn222bd.dishes WHERE D_ID = " . $did;
     $result = query_db($qry,$db);
 
 
@@ -28,17 +28,41 @@
         $result = query_db($qry,$db);
         $grAvg =  mysql_result($result, 0, 'AVG(rating)');
 		if($avg == ""){
-			$avg = "Ej betygsatt";
+			$avg = "Not rated";
 		}
 
         echo "<div class='thedish'>";
         echo "<h3>" . $name . "</h3>";
-        echo "<p> Totalt medelbetyg: ALGORHITMS-FLOOOP-III-DOP</p>";
-        echo "<p> Enskilt medelbetyg: " . $avg . "</p>";
-        echo "<p> Gruppvärderings medelbetyg: " . $grAvg . "</p>";
-        echo "<div class='single'";
-		echo "</div>";
+        echo "<p> Total rating: ALGORHITMS-FLOOOP-III-DOP</p>";
+
+        echo "Singlerating: <div class='starsS'></div>";
+
+        if($avg == ""){
+            $avg = 0;
+            echo "Not rated";
+        }
+
+        echo "<script> $('.starsS').raty({
+            half: true,
+            score: " . $avg . ",
+            readOnly: true
+            }); </script>";
+
+
+        echo "Grouprating: <div class='starsG'></div>";
+
+        if($grAvg == ""){
+            $grAvg = 0;
+            echo "Ej Betygsatt";
+        }
+        echo "<script> $('.starsG').raty({
+            half: true,
+            score: " . $grAvg . ",
+            readOnly: true
+            }); </script>";
+
         echo "</div>";
+
 		 
     }
 
