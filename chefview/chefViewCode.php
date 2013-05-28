@@ -3,7 +3,7 @@
     //Globala variabler
     global $db;
     $db = open_db(); //Databasen öppnas
-
+    
     function echoDishes()
     {
     	global $db;
