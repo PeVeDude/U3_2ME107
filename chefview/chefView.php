@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div id='header'>
-           <h1>FoodReview</h1>
+        <h1><a href='chefView.php'>FoodReview</a></h1>
     </div>
     <div id="dishes">
         <?php echoDishes() ?>

@@ -53,7 +53,7 @@
 
         if($grAvg == ""){
             $grAvg = 0;
-            echo "Ej Betygsatt";
+            echo "Not rated";
         }
         echo "<script> $('.starsG').raty({
             half: true,
