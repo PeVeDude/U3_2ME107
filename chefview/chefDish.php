@@ -25,6 +25,7 @@
         </div>
         <div id="dishes">
             <?php echoDish() ?>
+            <?php echoTotal() ?>
         </div>
         
     </body>
