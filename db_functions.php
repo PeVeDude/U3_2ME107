@@ -28,7 +28,7 @@ function query_db($query, $link) {
 	return $result;
 }
 
-public function getData($strQuery) //Tar alla resultat och pushar in det i en array
+function getData($strQuery) //Tar alla resultat och pushar in det i en array
 	{
 		$output	= array();
 		$result	= @mysql_query($strQuery);
