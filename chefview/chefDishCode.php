@@ -14,7 +14,7 @@
     $result = query_db($qry,$db);
 
 
-    function echoDish()
+    function echoSingleDishRating()
     {
     	global $db;
         global $did;
@@ -27,18 +27,11 @@
 		$result = query_db($qry,$db);
 		$avg =  mysql_result($result, 0, 'AVG(rating)');
 
-        $qry = "SELECT name, AVG(rating) FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
-        $result = query_db($qry,$db);
-        $grAvg =  mysql_result($result, 0, 'AVG(rating)');
-
 		if($avg == ""){
 			$avg = "Not rated";
 		}
 
-        echo "<div class='thedish'>";
-        echo "<h3>" . $name . "</h3>";
-
-        echo "Singlerating: <div class='starsS'></div>";
+        echo "<h4>Singlerating:</h4> <div class='starsS'></div></p>";
 
         if($avg == ""){
             $avg = 0;
@@ -51,8 +44,22 @@
             readOnly: true
             }); </script>";
 
+        echo "</div>";
 
-        echo "Grouprating: <div class='starsG'></div>";
+		 
+    }
+
+    function echoGrpDishRating() {
+        global $db;
+        global $did;
+        global $result;
+        global $avg;
+
+        $qry = "SELECT name, AVG(rating) FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
+        $result = query_db($qry,$db);
+        $grAvg =  mysql_result($result, 0, 'AVG(rating)');
+
+        echo "<h4>Grouprating:</h4> <div class='starsG'></div>";
 
         if($grAvg == ""){
             $grAvg = 0;
@@ -63,10 +70,6 @@
             score: " . $grAvg . ",
             readOnly: true
             }); </script>";
-
-        echo "</div>";
-
-		 
     }
 
     function echoName()
@@ -81,6 +84,12 @@
         global $db;
         global $did;
         global $avg;
+        global $result;
+
+        $name = mysql_result($result, 0, 'name');
+
+        echo "<div class='thedish'>";
+        echo "<h3>" . $name . "</h3>";
 
         $groupvalues = array();
         $groupids = array();
@@ -126,7 +135,7 @@
         
     }
 
-    function echoComments()
+    function echoSingleComments()
     {
         global $db;
         global $did;
@@ -136,9 +145,33 @@
 
         if(mysql_num_rows($result) > 0 ) {
 
+            echo "<b>Comments</b>";
             while($res = mysql_fetch_object($result)) {
             
                 echo "<div id='comment'>";
+                echo $res->comment;
+                echo "</div>";
+            }//End while
+        
+        }//End if
+    }
+
+    function echoGrpComments()
+    {
+        global $db;
+        global $did;
+        global $result;
+
+        $name = mysql_result($result, 0, 'name');
+            
+        $qry = "SELECT comment FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
+        $result = query_db($qry,$db);
+
+        if(mysql_num_rows($result) > 0 ) {
+            echo "<b>Comments from group where '{$name}' is included</b>";
+            while($res = mysql_fetch_object($result)) {
+            
+                echo "<div id='grpComment'>";
                 echo $res->comment;
                 echo "</div>";
             }//End while

@@ -27,6 +27,7 @@ $(document).ready(function () {
 
 		  	if($("."+(j+1)+" input:checked").is(':checked') == true){
 		  		$('.star'+ (j+1) +'').css("display", "block");
+		  		$('#commentDiv'+ (j+1) +'').css("display", "block");
 		  		if(starArray['.star'+ (j+1)]) {
 					$('.star'+ (j+1) +'').raty({
 						score: starArray['.star'+ (j+1)],
@@ -51,7 +52,7 @@ $(document).ready(function () {
 		
 			else if($("."+(j+1)+" input:checked").is(':checked') == false){
 				$('.star'+ (j+1) +'').css("display", "none");
-
+				$('#commentDiv'+ (j+1) +'').css("display", "block");
 			}
 		});
 	});

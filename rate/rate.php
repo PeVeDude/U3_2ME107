@@ -46,6 +46,7 @@
 				else if(@$_GET['dishGrp']) {
 					$url_link = htmlspecialchars($HTTP_SERVER_VARS['QUERY_STRING']);
 					$array	= explode("&amp;", $url_link);
+					//var_dump($array);
 					$rate->addGrpRating($array);
 				}
 			?>

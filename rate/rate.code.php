@@ -49,7 +49,7 @@ class rate
 				$dbQuery	=	"SELECT name, D_ID FROM dishes WHERE D_ID={$dish}";
 				$result	= query_db($dbQuery,$this->MySQL);
 				$dishName = mysql_fetch_row($result); 
-				$dishName = "<div class='".$i."'>{$dishName[0]} <input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><div class='star".$i."' style='display:none'></div></div><br/>";
+				$dishName = "<div class='".$i."'>{$dishName[0]} <input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><div class='star".$i."' style='display:none'></div></div><div id='commentDiv".$i."' style='display:none'><input type='text' id='comment".$i."' name='comment' placeholder='Comment..'> * Optional</div><br/>";
 				echo $dishName;
 				$i++;
 			}
@@ -74,6 +74,7 @@ class rate
 			}
 		}
 		echo "<div class='starGrp' style='display:block'></div>";
+		echo "<input type='text' id='commentGrp' name='commentGrp' placeholder='Comment..'> * Optional<br />";
 		echo "<input type='submit' class='btn'>";
 		echo "</form>";
 	}
@@ -86,23 +87,32 @@ class rate
 		$singleRateID 		= 	mysql_fetch_row($resultGet);
 
 		for ($i = 0; $i < count($array); $i++) {
-			$nyarray	= explode("=", $array[$i]);
-			$nyarray2	= explode("=", $array[$i+1]);
+			$dishID	= explode("=", $array[$i]);
+			$dishRating	= explode("=", $array[$i+1]);
+			$dishComment	= explode("=", $array[$i+2]);
+			$dishComment 	= str_replace('+', ' ', $dishComment[1]);
+			$dishComment 	=  urldecode($dishComment);
+			$dishComment	=  utf8_decode($dishComment);
 			$i++;
-			$addDishRating		=	"INSERT INTO dishsingle (S_ID, D_ID, rating) VALUES ({$singleRateID[0]}, {$nyarray[1]}, {$nyarray2[1]})";
+			$i++;
+			$addDishRating		=	"INSERT INTO dishsingle (S_ID, D_ID, rating, comment) VALUES ({$singleRateID[0]}, {$dishID[1]}, {$dishRating[1]}, '{$dishComment[1]}')";
 			$resultAdd			= 	query_db($addDishRating,$this->MySQL);
 		}
 	}
 	public function addGrpRating($array) {
-		$nyarray	= explode("=", $array[count($array)-1]);
-		$addQuerySingleRate	=	"INSERT INTO grouprate (G_ID, rating) VALUES (null, {$nyarray[1]})";
+		$rating	= explode("=", $array[count($array)-2]);
+		$grpComment	= explode("=", $array[count($array)-1]);
+		$grpComment = str_replace('+', ' ', $grpComment[1]);
+		$grpComment =  urldecode($grpComment);
+		$grpComment =  utf8_decode($grpComment);
+		$addQuerySingleRate	=	"INSERT INTO grouprate (G_ID, rating, comment) VALUES (null, {$rating[1]}, '{$grpComment}')";
 		$resultAdd			= 	query_db($addQuerySingleRate,$this->MySQL);
 		
 		$getID				=	"SELECT G_ID FROM grouprate ORDER BY G_ID DESC LIMIT 1";
 		$resultGet			= 	query_db($getID,$this->MySQL);
 		$grpRateID 		= 	mysql_fetch_row($resultGet);
 
-		for ($i = 0; $i < count($nyarray); $i++) {
+		for ($i = 0; $i < count($rating); $i++) {
 			$dishArray	= explode("=", $array[$i]);
 			$addDishRating		=	"INSERT INTO dishgroup (D_ID, G_ID) VALUES ({$dishArray[1]}, {$grpRateID[0]})";
 			$resultAdd			= 	query_db($addDishRating,$this->MySQL);
