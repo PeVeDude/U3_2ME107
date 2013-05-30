@@ -168,7 +168,7 @@
         $result = query_db($qry,$db);
 
         if(mysql_num_rows($result) > 0 ) {
-            echo "<b>Comments from group where '{$name}' is included</b>";
+            echo "<b>Comments from groups where '{$name}' is included</b>";
             while($res = mysql_fetch_object($result)) {
             
                 echo "<div id='grpComment'>";
