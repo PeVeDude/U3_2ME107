@@ -87,6 +87,9 @@
         global $result;
 
         $name = mysql_result($result, 0, 'name');
+        $qry = "SELECT AVG(rating) FROM jn222bd.dishsingle WHERE D_ID = " . $did;
+        $result = query_db($qry,$db);
+        $avg =  mysql_result($result, 0, 'AVG(rating)');
 
         echo "<div class='thedish'>";
         echo "<h3>" . $name . "</h3>";
