@@ -95,7 +95,7 @@ class rate
 			$dishComment	=  utf8_decode($dishComment);
 			$i++;
 			$i++;
-			$addDishRating		=	"INSERT INTO dishsingle (S_ID, D_ID, rating, comment) VALUES ({$singleRateID[0]}, {$dishID[1]}, {$dishRating[1]}, '{$dishComment[1]}')";
+			$addDishRating		=	"INSERT INTO dishsingle (S_ID, D_ID, rating, comment) VALUES ({$singleRateID[0]}, {$dishID[1]}, {$dishRating[1]}, '{$dishComment}')";
 			$resultAdd			= 	query_db($addDishRating,$this->MySQL);
 		}
 	}
