@@ -13,12 +13,7 @@ $(document).ready(function () {
 });
 
 function qrReq(nrOfMeals) {
-	/*var meal1 = document.getElementById('meal1').value;
-	var meal2 = document.getElementById('meal2').value;
-	var meal3 = document.getElementById('meal3').value;
-	var meal4 = document.getElementById('meal4').value;
-	var meal5 = document.getElementById('meal5').value;
-	var meal6 = document.getElementById('meal6').value;*/
+	
 	var dishes = "";
 	for (var i=1; i<nrOfMeals; i++) {
 		dishes += $("#meal"+ i).val()+",";
