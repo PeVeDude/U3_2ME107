@@ -26,6 +26,7 @@
         <div id="dishes">
             <?php echoDish() ?>
             <?php echoTotal() ?>
+            <?php echoComments() ?>
         </div>
         
     </body>

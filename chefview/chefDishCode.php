@@ -126,4 +126,24 @@
         
     }
 
+    function echoComments()
+    {
+        global $db;
+        global $did;
+            
+        $qry = "SELECT comment FROM jn222bd.dishsingle WHERE D_ID = " . $did;
+        $result = query_db($qry,$db);
+
+        if(mysql_num_rows($result) > 0 ) {
+
+            while($res = mysql_fetch_object($result)) {
+            
+                echo "<div id='comment'>";
+                echo $res->comment;
+                echo "</div>";
+            }//End while
+        
+        }//End if
+    }
+
 ?>
