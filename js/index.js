@@ -27,6 +27,7 @@ $(document).ready(function () {
 
 		  	if($("."+(j+1)+" input:checked").is(':checked') == true){
 		  		$('.star'+ (j+1) +'').css("display", "block");
+		  		$('#commentDiv'+ (j+1) +'').css("display", "block");
 		  		if(starArray['.star'+ (j+1)]) {
 					$('.star'+ (j+1) +'').raty({
 						score: starArray['.star'+ (j+1)],
@@ -51,36 +52,8 @@ $(document).ready(function () {
 		
 			else if($("."+(j+1)+" input:checked").is(':checked') == false){
 				$('.star'+ (j+1) +'').css("display", "none");
-
+				$('#commentDiv'+ (j+1) +'').css("display", "block");
 			}
 		});
 	});
-	/*$('#rate-ind input[type=checkbox]').each(function (i) {
-		i++;
-		console.log($('.checkbox'+ i +''));
-		$('#checkbox'+ i +'').change(function(){
-			if($('#checkbox'+ i +'').is(':checked')) {
-				$('.star'+ i +'').css("display", "block");
-			}
-			else if(!$('#checkbox'+ i +'').is('checked')) {
-				$('.star'+ i +'').css("display", "none");
-			}
-		});
-	});*/
- 	/*
- 	$( "input" ).on( "click", function() {
-	  $( "#rateDiv" ).html( $("input:checked").val() + " is checked!" );
-	});
-	*/
-	//$( "#rate-ind input" ).on( "change", countChecked );
-	/*
-	$("#rate-ind input[type=checkbox]").each(function(i) {
-		i++;
-        var $this = $(this);           
-        var student = $this.attr('data');
-                
-        var checkbox1 = $this.find('input.checkbox'+ i +'').is(':checked'); 
-        var checkbox2 = $this.find('input.checkbox'+ i +'').is(':checked'); 
-        //var checkbox3 = $this.find('input.checkbox'+ i +'').is(':checked'); 
-    });*/
 });

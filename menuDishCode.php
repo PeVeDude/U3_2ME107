@@ -47,7 +47,39 @@
 
     function echoRecomend()
     {
-    	echo "algotihme!!! Make recomendededed foooooods!";
+        global $db;
+        global $did;
+        global $result;
+        $qry = "SELECT d.name as name, ds.S_ID, d.D_ID as id FROM dishsingle as ds, dishes as d WHERE ds.S_ID IN (SELECT S_ID FROM dishsingle WHERE D_ID = ".$did.") AND d.D_ID = ds.D_ID AND NOT d.D_ID = ".$did."";
+        $result = query_db($qry,$db);
+        //$getRecommended      =   mysql_fetch_row($result);
+        $dishes = array();
+        if(mysql_num_rows($result) > 0 ) {
+
+            while($res = mysql_fetch_object($result)) {
+                    array_push($dishes, $res->id);
+            }//End while
+        
+        }//End if
+        $countedDishes = array_count_values($dishes);
+        arsort($countedDishes);
+        $i = 0;
+        echo "<h4>Recommended dishes.</h4>";
+        foreach ($countedDishes  as $key => $value)  {
+            $qry = "SELECT d.name as name, d.D_ID as id, AVG(ds.rating) as rating FROM dishsingle as ds, dishes as d WHERE d.D_ID = ".$key." AND ds.D_ID = d.D_ID";
+            $result = query_db($qry,$db);
+            $res = mysql_fetch_object($result);
+            if($i < 5) {
+                echo "<a href='menuDish.php?id=".$res->id."'>".$res->name."</a> ";
+                echo "<div class='starsRec" . $i . "'></div><br/>";
+                echo "<script> $('.starsRec" . $i . "').raty({
+                half: true,
+                score: " . $res->rating . ",
+                readOnly: true
+                }); </script>";
+                $i++;
+            }
+        }
     }
 
 ?>

@@ -24,7 +24,11 @@
                <a href='logout.php'> Logga ut </a>
         </div>
         <div id="dishes">
-            <?php echoDish() ?>
+            <?php echoTotal() ?>
+            <?php echoSingleDishRating () ?>
+            <?php echoSingleComments() ?>
+            <?php echoGrpDishRating () ?>
+            <?php echoGrpComments() ?>
         </div>
         
     </body>

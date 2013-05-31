@@ -28,6 +28,23 @@ function query_db($query, $link) {
 	return $result;
 }
 
+function getData($strQuery) //Tar alla resultat och pushar in det i en array
+	{
+		$output	= array();
+		$result	= @mysql_query($strQuery);
+		
+		if($result)
+		{
+			while($row = mysql_fetch_assoc($result))
+			{
+				array_push($output, $row);
+			}
+			
+			return $output;
+		}
+	}
+
+
 // Stänger anslutningen till databasen
 function close_db($link) {
 	if (!mysql_close($link)) {
