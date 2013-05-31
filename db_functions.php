@@ -14,6 +14,7 @@ function open_db() {
 			mysql_errno($link).":".mysql_error($link)."</p>\n";	
 		return 0;
 	}
+	mysql_query('SET NAMES "utf8"');
 	return $link;
 }
 
