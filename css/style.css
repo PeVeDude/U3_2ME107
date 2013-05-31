@@ -108,5 +108,10 @@ input[type=checkbox]
 	  -o-transform: scale(1.3); /* Opera */
 	  margin:-6px 0 0 0 !important;
 	}
+
+	.flickrImg img {
+		position:relative;
+		width:100%;
+	}
 	
 }
