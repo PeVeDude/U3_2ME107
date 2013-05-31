@@ -50,7 +50,7 @@ class rate
 				$dbQuery	=	"SELECT name, D_ID FROM dishes WHERE D_ID={$dish}";
 				$result	= query_db($dbQuery,$this->MySQL);
 				$dishName = mysql_fetch_row($result); 
-				$dishNames = "<div class='".$i."' style='margin-bottom:7px;'><input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><i class='name'>{$dishName[0]}</i><div class='star".$i."' style='display:none; margin-top:10px;'></div></div><div id='commentDiv".$i."' style='display:none'><input type='text' id='comment".$i."' name='comment' placeholder='Comment..'><i class='optional'> * Optional</i>";
+				$dishNames = "<div class='".$i."' style='margin-bottom:7px;'><input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><i class='name'>{$dishName[0]}</i><div class='star".$i."' style='display:none; margin-top:10px;'></div></div><div id='commentDiv".$i."' style='display:none'><input type='text' id='comment".$i."' name='comment".$i."' placeholder='Comment..' disabled><i class='optional'> * Optional</i>";
 				echo $dishNames;
 				getPics($dishName[0]);
 				echo "</div><br/>";
@@ -91,16 +91,29 @@ class rate
 		$singleRateID 		= 	mysql_fetch_row($resultGet);
 
 		for ($i = 0; $i < count($array); $i++) {
-			$dishID	= explode("=", $array[$i]);
-			$dishRating	= explode("=", $array[$i+1]);
-			$dishComment	= explode("=", $array[$i+2]);
-			$dishComment 	= str_replace('+', ' ', $dishComment[1]);
-			$dishComment 	=  urldecode($dishComment);
-			$dishComment	=  utf8_decode($dishComment);
+			@$dishID	= explode("=", $array[$i]);
+			@$dishRating	= explode("=", $array[$i+1]);
+			@$dishComment	= explode("=", $array[$i+2]);
+			if (!@$dishComment[1] == "") {
+				if (strpos($dishComment[1],'+') !== false) {
+					$dishComment 	= str_replace('+', ' ', $dishComment[1]);
+					$dishComment 	=  urldecode($dishComment);
+				}
+
+				else {
+					$dishComment = $dishComment[1];
+					$dishComment 	=  urldecode($dishComment);
+				}
+				$addDishRating		=	"INSERT INTO dishsingle (S_ID, D_ID, rating, comment) VALUES ({$singleRateID[0]}, {$dishID[1]}, {$dishRating[1]}, '{$dishComment}')";
+				$resultAdd			= 	query_db($addDishRating,$this->MySQL);
+			}
+
+			else {
+				$addDishRating		=	"INSERT INTO dishsingle (S_ID, D_ID, rating, comment) VALUES ({$singleRateID[0]}, {$dishID[1]}, {$dishRating[1]}, '{$dishComment[1]}')";
+				$resultAdd			= 	query_db($addDishRating,$this->MySQL);
+			}
 			$i++;
 			$i++;
-			$addDishRating		=	"INSERT INTO dishsingle (S_ID, D_ID, rating, comment) VALUES ({$singleRateID[0]}, {$dishID[1]}, {$dishRating[1]}, '{$dishComment}')";
-			$resultAdd			= 	query_db($addDishRating,$this->MySQL);
 		}
 	}
 	public function addGrpRating($array) {

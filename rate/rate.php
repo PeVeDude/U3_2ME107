@@ -51,7 +51,7 @@
 			<div id="rateDiv">
 				<?php
 					if(@$_GET['dish']) {
-						if(!$_GET['score'] == null) {
+						if($_GET['score'] == null) {
 							$url_link = htmlspecialchars($HTTP_SERVER_VARS['QUERY_STRING']);
 							$array	= explode("&amp;", $url_link);
 							$redirectDishes = "";
@@ -69,6 +69,8 @@
 							$url_link = htmlspecialchars($HTTP_SERVER_VARS['QUERY_STRING']);
 							$array	= explode("&amp;", $url_link);
 							$rate->addDishes($array);
+							//FIXA NY SIDA NÅGON DAAAG
+							//header("Location: http://mlab1.msi.vxu.se/~jn222bd/qrproject/rate/rate.php?dishes=".$redirectDishes."&rated=no");
 						}
 					}
 					else if(@$_GET['dishGrp']) {
