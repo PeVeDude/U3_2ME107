@@ -5,7 +5,7 @@ function getPics($dish) //Funktion för att hämta alla poster i databasen, loopa 
 
 	$sDish = urlencode($dish);
 
-	$url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e60e15a5580632018c6567fd7bb65130&text={$sDish}&per_page=1&page=1&format=php_serial"; //Söksträng för varje post ifrån databasen
+	$url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=e60e15a5580632018c6567fd7bb65130&text={$sDish}&per_page=1&page=1&format=php_serial";
 
 	$result = file_get_contents($url); 
 	$result_obj = unserialize($result); 
