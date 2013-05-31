@@ -50,9 +50,9 @@ class rate
 				$dbQuery	=	"SELECT name, D_ID FROM dishes WHERE D_ID={$dish}";
 				$result	= query_db($dbQuery,$this->MySQL);
 				$dishName = mysql_fetch_row($result); 
-				$dishName = "<div class='".$i."'>{$dishName[0]} <input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><div class='star".$i."' style='display:none'></div></div><div id='commentDiv".$i."' style='display:none'><input type='text' id='comment".$i."' name='comment' placeholder='Comment..'> * Optional</div><br/>";
+				$dishNames = "<div class='".$i."'>{$dishName[0]} <input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><div class='star".$i."' style='display:none'></div></div><div id='commentDiv".$i."' style='display:none'><input type='text' id='comment".$i."' name='comment' placeholder='Comment..'> * Optional</div><br/>";
+				echo $dishNames;
 				getPics($dishName[0]);
-				echo $dishName;
 				$i++;
 			}
 		}
