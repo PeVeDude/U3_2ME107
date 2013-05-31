@@ -21,7 +21,7 @@ $sDish = dish;
 	}
 	//$i['img'] = $imgUrl; //Bildens url läggs till i den nuvarande posten under 'img'
 
-echo $imgUrl;
+echo "<img src=". $imgUrl .">";
 
 //$posts = json_encode($posts); //Posts från databasen (nu även med bild url) json kodas
 //print_r($posts); //Skriver ut posts på sidan, detta för att informationen ska kunna returneras på rätt sätt
