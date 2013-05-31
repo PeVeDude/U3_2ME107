@@ -2,6 +2,7 @@
 
 // IMPORTS
 require_once "../db_functions.php";
+require_once "flickr.code.php";
 
 class rate
 {
@@ -49,8 +50,9 @@ class rate
 				$dbQuery	=	"SELECT name, D_ID FROM dishes WHERE D_ID={$dish}";
 				$result	= query_db($dbQuery,$this->MySQL);
 				$dishName = mysql_fetch_row($result); 
-				$dishName = "<div class='".$i."' style='margin-bottom:7px;'><input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><i class='name'>{$dishName[0]}</i><div class='star".$i."' style='display:none; margin-top:10px;'></div></div><div id='commentDiv".$i."' style='display:none'><input type='text' id='comment".$i."' name='comment' placeholder='Comment..'><i class='optional'> * Optional</i></div><br/>";
-				echo $dishName;
+				$dishNames = "<div class='".$i."' style='margin-bottom:7px;'><input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><i class='name'>{$dishName[0]}</i><div class='star".$i."' style='display:none; margin-top:10px;'></div></div><div id='commentDiv".$i."' style='display:none'><input type='text' id='comment".$i."' name='comment' placeholder='Comment..'><i class='optional'> * Optional</i></div><br/>";
+				echo $dishNames;
+				getPics($dishName[0]);
 				$i++;
 			}
 		}
