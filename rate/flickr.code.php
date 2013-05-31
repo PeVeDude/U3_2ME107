@@ -14,7 +14,7 @@ function getPics($dish)
 
 	if(@$result_obj[photos][total] != 0) {
 		$imgUrl = "http://farm{$result_obj['photos']['photo'][0]['farm']}.static.flickr.com/{$result_obj['photos']['photo'][0]['server']}/{$result_obj['photos']['photo'][0]['id']}_{$result_obj['photos']['photo'][0]['secret']}.jpg";
-		echo "<img src=". $imgUrl .">";
+		echo "<div class='flickrImg'><img src=". $imgUrl ."></div>";
 	}
 	else {
 		echo "<p>No photo found</p>";

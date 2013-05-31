@@ -27,13 +27,22 @@ h4 {
 	margin-top:10px;
 	margin-bottom:0px;
 }
-
+h5 {
+	font-size:16px;
+	margin-bottom: 3px !important;
+	margin-top:0 !important;
+}
 .clearfix {
 	clear:both;
 }
 
 .dish {
 	border-bottom: dotted 1px;
+}
+
+.line {
+	margin-top:10px;
+	border:1px solid rgb(206, 206, 206);
 }
 
 #rate-grp input[type=text] {
@@ -107,6 +116,11 @@ input[type=checkbox]
 	  -webkit-transform: scale(1.3); /* Safari and Chrome */
 	  -o-transform: scale(1.3); /* Opera */
 	  margin:-6px 0 0 0 !important;
+	}
+
+	.flickrImg img {
+		position:relative;
+		width:100%;
 	}
 	
 }
