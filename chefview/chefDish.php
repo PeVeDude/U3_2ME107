@@ -10,6 +10,7 @@
 <html>
     <head>
     	<title>FoodReview</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     	<link rel='stylesheet' href='../css/style.css' />
         <script type='text/javascript' src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
         <script type='text/javascript' src='../js/qr.js'></script>

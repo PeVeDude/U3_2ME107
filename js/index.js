@@ -56,4 +56,7 @@ $(document).ready(function () {
 			}
 		});
 	});
+
+	$('#singlecomments .line:last').remove();
+	$('#grpcomments .line:last').remove();
 });

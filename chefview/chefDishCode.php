@@ -31,7 +31,7 @@
 			$avg = "Not rated";
 		}
 
-        echo "<h4>Singlerating:</h4> <div class='starsS'></div></p>";
+        echo "<h4>Singlerating:</h4> <div class='starsS'></div>";
 
         if($avg == ""){
             $avg = 0.5;
@@ -98,7 +98,7 @@
         $groupids = array();
         $grouplenght = array();
         $dishcount = array();
-        echo "Totalrating: <div class='starsT'></div>";
+        echo "<h4>Totalrating:</h4> <div class='starsT'></div><div class='line'></div>";
 
         $qry= "SELECT d.name, gr.rating, gr.G_ID FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
         $result = query_db($qry,$db);
@@ -202,15 +202,19 @@
 
         if(mysql_num_rows($result) > 0 ) {
 
-            echo "<b>Comments</b>";
+            echo "<br/><h5>Comments:</b></h5>";
+            echo "<div id='singlecomments'>";
             while($res = mysql_fetch_object($result)) {
-            
-                echo "<div id='comment'>";
-                echo $res->comment;
-                echo "</div>";
+                if (!$res->comment == "") {
+                    echo "<div id='comment' style='font-size:13px;'><b>";
+                    echo $res->comment;
+                    echo "</b></div><div class='line' style='width:150px; margin-bottom: 7px; margin-top:7px;'></div>";
+                }
             }//End while
-        
+            echo "</div>";
+            echo "<div class='line'></div>";
         }//End if
+        
     }
 
     function echoGrpComments()
@@ -225,15 +229,20 @@
         $result = query_db($qry,$db);
 
         if(mysql_num_rows($result) > 0 ) {
-            echo "<b>Comments from groups where '{$name}' is included</b>";
+            echo "<br/><h5>Comments from groups where '{$name}' is included:</h5>";
+            echo "<div id='grpcomments'>";
             while($res = mysql_fetch_object($result)) {
-            
-                echo "<div id='grpComment'>";
-                echo $res->comment;
-                echo "</div>";
+                if (!$res->comment == "") {
+                    echo "<div id='comment' style='font-size:13px;'><b>";
+                    echo $res->comment;
+                    echo "</b></div><div class='line' style='width:150px; margin-bottom: 7px; margin-top:7px;'></div>";  
+                }
             }//End while
-        
+            echo "</div>";
         }//End if
+        else {
+            echo "No comments!";
+        }
     }
 
 ?>

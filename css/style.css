@@ -27,13 +27,22 @@ h4 {
 	margin-top:10px;
 	margin-bottom:0px;
 }
-
+h5 {
+	font-size:16px;
+	margin-bottom: 3px !important;
+	margin-top:0 !important;
+}
 .clearfix {
 	clear:both;
 }
 
 .dish {
 	border-bottom: dotted 1px;
+}
+
+.line {
+	margin-top:10px;
+	border:1px solid rgb(206, 206, 206);
 }
 
 #rate-grp input[type=text] {

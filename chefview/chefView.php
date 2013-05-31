@@ -11,6 +11,7 @@
     <head>
     	<title>FoodReview</title>
     	<link rel='stylesheet' href='../css/style.css' />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <script type='text/javascript' src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
         <script type='text/javascript' src='../js/qr.js'></script>
         <script type="text/javascript" src="../js/jquery.raty.js"></script>
