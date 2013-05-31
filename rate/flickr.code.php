@@ -1,6 +1,6 @@
 <?php 			
 
-function getPics($dish) //Funktion fšr att hŠmta alla poster i databasen, loopa igenom dem, skicka en fšrfrŒgan till flickr samt bygga en lŠnk till varje bild som hittas
+function getPics($dish)
 {
 
 	$sDish = urlencode($dish);
