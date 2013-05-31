@@ -41,7 +41,7 @@
         echo "Singlerating: <div class='starsS'></div>";
 
         if($avg == ""){
-            $avg = 0;
+            $avg = 0.5;
             echo "Not rated";
         }
 
@@ -55,7 +55,7 @@
         echo "Grouprating: <div class='starsG'></div>";
 
         if($grAvg == ""){
-            $grAvg = 0;
+            $grAvg = 0.5;
             echo "Not rated";
         }
         echo "<script> $('.starsG').raty({
@@ -84,8 +84,9 @@
 
         $groupvalues = array();
         $groupids = array();
-        $dishratings = array();
-        echo "Totalrating: <div class='starsS'></div>";
+        $grouplenght = array();
+        $dishcount = array();
+        echo "Totalrating: <div class='starsT'></div>";
 
         $qry= "SELECT d.name, gr.rating, gr.G_ID FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
         $result = query_db($qry,$db);
@@ -101,29 +102,82 @@
         }//End if
 
         for ($i=0; $i < count($groupids); $i++) { 
-            $qry= "SELECT d.name, d.D_ID, gr.G_ID FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND g.G_ID = " . $groupids[$i] . " AND g.G_ID = gr.G_ID AND NOT d.D_ID = " . $did;
+            $qry= "SELECT d.name, d.D_ID, gr.G_ID FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND g.G_ID = " . $groupids[$i] . " AND g.G_ID = gr.G_ID";
             $result = query_db($qry,$db);
+            $thedishCount = 0;
+            $groupCount = 0;
 
             if(mysql_num_rows($result) > 0 ) {
 
                 while($res = mysql_fetch_object($result)) {
-                
-                    $qry2 = "SELECT AVG(rating) FROM jn222bd.dishsingle WHERE D_ID = " . $res->D_ID;
-                    $result2 = query_db($qry2,$db);
-                    $avgGr = mysql_result($result2, 0, 'AVG(rating)');
-                    array_push($dishratings, $avgGr);
+                    
+                    if($did == $res->D_ID){
+                        $thedishCount ++;
+                    }
+
+                    $groupCount++;
+                    
+                }//End while
+                array_push($grouplenght, $groupCount);
+                array_push($dishcount, $thedishCount);
+            
+            }//End if
+        }
+
+        calculateTotal($groupvalues, $grouplenght, $dishcount);
+    }
+
+    function calculateTotal($values, $gCount, $dCount)
+    {
+        global $did;
+        global $db;
+
+        $sRatings = 0;
+        $totalSingleRatings = 0;
+        $totalperc = 0;
+        $totalrate = 0;
+        $percArray = array();
+        $percOfWeight = array();
+       
+        for ($i=0; $i < count($gCount); $i++) {
+            $perc = $dCount[$i]/$gCount[$i];
+            $totalperc += $perc;
+            array_push($percArray, $perc);
+        }
+      
+        for ($i=0; $i < count($percArray); $i++) {
+            $pow = $percArray[$i]/$totalperc;
+            array_push($percOfWeight, $pow);
+        }
+
+        for ($i=0; $i < count($percOfWeight); $i++) {
+            $totalrate += $percOfWeight[$i]*$values[$i];
+           
+        }
+        
+        $qry = "SELECT rating  FROM jn222bd.dishsingle WHERE D_ID = " . $did;
+        $result = query_db($qry,$db);
+
+        if(mysql_num_rows($result) > 0 ) {
+
+                while($res = mysql_fetch_object($result)) {
+                    
+                    $totalSingleRatings += $res->rating;
+
+                    $sRatings++;
                     
                 }//End while
             
-            }//End if
-            echo "Gruppens medelvärde: " . $groupvalues[$i] . ".....";
-            echo "Rättens värde : " . $avg . ".....";
-            echo  var_dump($dishratings);
-            $dishratings = array();
+        }//End if
+        $ratings = $sRatings + count($values);
+        $totalValue = $totalSingleRatings + $totalrate * count($values);
+        $finalrate = $totalValue/$ratings;
+        echo "<script> $('.starsT').raty({
+            half: true,
+            score: " . $finalrate . ",
+            readOnly: true
+            }); </script>";
 
-        }
-
-        
     }
 
     function echoComments()
