@@ -52,7 +52,7 @@ $(document).ready(function () {
 		
 			else if($("."+(j+1)+" input:checked").is(':checked') == false){
 				$('.star'+ (j+1) +'').css("display", "none");
-				$('#commentDiv'+ (j+1) +'').css("display", "block");
+				$('#commentDiv'+ (j+1) +'').css("display", "none");
 			}
 		});
 	});
