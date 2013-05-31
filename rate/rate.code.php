@@ -2,6 +2,7 @@
 
 // IMPORTS
 require_once "../db_functions.php";
+require_once "flickr.code.php";
 
 class rate
 {
@@ -50,6 +51,7 @@ class rate
 				$result	= query_db($dbQuery,$this->MySQL);
 				$dishName = mysql_fetch_row($result); 
 				$dishName = "<div class='".$i."'>{$dishName[0]} <input type='checkbox' id='checkbox".$i."' name='dish' value='{$dishName[1]}'><div class='star".$i."' style='display:none'></div></div><div id='commentDiv".$i."' style='display:none'><input type='text' id='comment".$i."' name='comment' placeholder='Comment..'> * Optional</div><br/>";
+				getPics($dishName[0]);
 				echo $dishName;
 				$i++;
 			}
