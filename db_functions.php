@@ -50,7 +50,7 @@ function getData($strQuery) //Tar alla resultat och pushar in det i en array
 function close_db($link) {
 	if (!mysql_close($link)) {
 		echo "<p>Something went wrong when closing the connection: <br>\n".
-			mysql_errno($link).":".mysql_error($link)."</p>\n";	
+		mysql_errno($link).":".mysql_error($link)."</p>\n";	
 		return 0;
 	}
 	return 1;

@@ -41,11 +41,15 @@
 					if(@$_GET['dishes']) {
 						$rate->getDishes($_GET['dishes']);
 					}
+
 				?>
 			</div>
 			<?php 
-				if(@$_GET['rated']) {
+				if(@$_GET['rated'] == 'no') {
 					echo "<p style='color:red;'>You need to rate the ones you've checked before submitting!</p>";
+				}
+				else if(@$_GET['rated'] == 'yes') {
+					echo "<p class='didRate'>Thanks for rating!</p>";
 				}
 			?>
 			<div id="rateDiv">
@@ -69,8 +73,7 @@
 							$url_link = htmlspecialchars($HTTP_SERVER_VARS['QUERY_STRING']);
 							$array	= explode("&amp;", $url_link);
 							$rate->addDishes($array);
-							//FIXA NY SIDA NÅGON DAAAG
-							//header("Location: http://mlab1.msi.vxu.se/~jn222bd/qrproject/rate/rate.php?dishes=".$redirectDishes."&rated=no");
+							header("Location: http://mlab1.msi.vxu.se/~jn222bd/qrproject/rate/rate.php?dishes=".$redirectDishes."&rated=yes");
 						}
 					}
 					else if(@$_GET['dishGrp']) {

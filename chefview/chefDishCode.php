@@ -23,12 +23,12 @@
 
         $name = mysql_result($result, 0, 'name');
 		    
-		$qry = "SELECT AVG(rating) FROM jn222bd.dishsingle WHERE D_ID = " . $did;
-		$result = query_db($qry,$db);
-		$avg =  mysql_result($result, 0, 'AVG(rating)');
+		$qry      = "SELECT AVG(rating) FROM jn222bd.dishsingle WHERE D_ID = " . $did;
+		$result   = query_db($qry,$db);
+		$avg      =  mysql_result($result, 0, 'AVG(rating)');
 
 		if($avg == ""){
-			$avg = "Not rated";
+			$avg  = "Not rated";
 		}
 
         echo "<h4>Singlerating:</h4> <div class='starsS'></div>";
@@ -39,9 +39,9 @@
         }
 
         echo "<script> $('.starsS').raty({
-            half: true,
-            score: " . $avg . ",
-            readOnly: true
+                half: true,
+                score: " . $avg . ",
+                readOnly: true
             }); </script>";
 
         echo "</div>";
@@ -55,58 +55,57 @@
         global $result;
         global $avg;
 
-        $qry = "SELECT name, AVG(rating) FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
+        $qry    = "SELECT name, AVG(rating) FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
         $result = query_db($qry,$db);
-        $grAvg =  mysql_result($result, 0, 'AVG(rating)');
+        $grAvg  =  mysql_result($result, 0, 'AVG(rating)');
 
-        echo "<h4>Grouprating:</h4> <div class='starsG'></div>";
+        echo    "<h4>Grouprating:</h4> <div class='starsG'></div>";
 
         if($grAvg == ""){
-            $grAvg = 0.5;
-            echo "Not rated";
+            $grAvg  = 0.5;
+            echo    "Not rated";
         }
         echo "<script> $('.starsG').raty({
-            half: true,
-            score: " . $grAvg . ",
-            readOnly: true
+                half: true,
+                score: " . $grAvg . ",
+                readOnly: true
             }); </script>";
     }
 
     function echoName()
     {
-        global $result;
-        $name = mysql_result($result, 0, 'name');
-        echo $name;
+        global  $result;
+        $name   = mysql_result($result, 0, 'name');
+        echo    $name;
     }
 
     function echoTotal()
     {
-        global $db;
-        global $did;
-        global $avg;
-        global $result;
+        global          $db;
+        global          $did;
+        global          $avg;
+        global          $result;
 
-        $name = mysql_result($result, 0, 'name');
-        $qry = "SELECT AVG(rating) FROM jn222bd.dishsingle WHERE D_ID = " . $did;
-        $result = query_db($qry,$db);
-        $avg =  mysql_result($result, 0, 'AVG(rating)');
+        $name           = mysql_result($result, 0, 'name');
+        $qry            = "SELECT AVG(rating) FROM jn222bd.dishsingle WHERE D_ID = " . $did;
+        $result         = query_db($qry,$db);
+        $avg            =  mysql_result($result, 0, 'AVG(rating)');
 
-        echo "<div class='thedish'>";
-        echo "<h3>" . $name . "</h3>";
+        echo            "<div class='thedish'>";
+        echo            "<h3>" . $name . "</h3>";
 
-        $groupvalues = array();
-        $groupids = array();
-        $grouplenght = array();
-        $dishcount = array();
-        echo "<h4>Totalrating:</h4> <div class='starsT'></div><div class='line'></div>";
+        $groupvalues    = array();
+        $groupids       = array();
+        $grouplenght    = array();
+        $dishcount      = array();
+        echo            "<h4>Totalrating:</h4> <div class='starsT'></div><div class='line'></div>";
 
-        $qry= "SELECT d.name, gr.rating, gr.G_ID FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
-        $result = query_db($qry,$db);
+        $qry            = "SELECT d.name, gr.rating, gr.G_ID FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
+        $result         = query_db($qry,$db);
 
         if(mysql_num_rows($result) > 0 ) {
 
             while($res = mysql_fetch_object($result)) {
-            
                 array_push($groupvalues, $res->rating);
                 array_push($groupids, $res->G_ID);
             }//End while
@@ -114,10 +113,10 @@
         }//End if
 
         for ($i=0; $i < count($groupids); $i++) { 
-            $qry= "SELECT d.name, d.D_ID, gr.G_ID FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND g.G_ID = " . $groupids[$i] . " AND g.G_ID = gr.G_ID";
-            $result = query_db($qry,$db);
-            $thedishCount = 0;
-            $groupCount = 0;
+            $qry            = "SELECT d.name, d.D_ID, gr.G_ID FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND g.G_ID = " . $groupids[$i] . " AND g.G_ID = gr.G_ID";
+            $result         = query_db($qry,$db);
+            $thedishCount   = 0;
+            $groupCount     = 0;
 
             if(mysql_num_rows($result) > 0 ) {
 
@@ -141,29 +140,29 @@
 
     function calculateTotal($values, $gCount, $dCount)
     {
-        global $did;
-        global $db;
+        global              $did;
+        global              $db;
 
-        $sRatings = 0;
+        $sRatings           = 0;
         $totalSingleRatings = 0;
-        $totalperc = 0;
-        $totalrate = 0;
-        $percArray = array();
-        $percOfWeight = array();
+        $totalperc          = 0;
+        $totalrate          = 0;
+        $percArray          = array();
+        $percOfWeight       = array();
        
         for ($i=0; $i < count($gCount); $i++) {
-            $perc = $dCount[$i]/$gCount[$i];
-            $totalperc += $perc;
+            $perc           = $dCount[$i]/$gCount[$i];
+            $totalperc      += $perc;
             array_push($percArray, $perc);
         }
       
         for ($i=0; $i < count($percArray); $i++) {
-            $pow = $percArray[$i]/$totalperc;
+            $pow            = $percArray[$i]/$totalperc;
             array_push($percOfWeight, $pow);
         }
 
         for ($i=0; $i < count($percOfWeight); $i++) {
-            $totalrate += $percOfWeight[$i]*$values[$i];
+            $totalrate      += $percOfWeight[$i]*$values[$i];
            
         }
         
@@ -181,23 +180,23 @@
                 }//End while
             
         }//End if
-        $ratings = $sRatings + count($values);
+        $ratings    = $sRatings + count($values);
         $totalValue = $totalSingleRatings + $totalrate * count($values);
-        $finalrate = $totalValue/$ratings;
+        $finalrate  = $totalValue/$ratings;
         echo "<script> $('.starsT').raty({
-            half: true,
-            score: " . $finalrate . ",
-            readOnly: true
+                half: true,
+                score: " . $finalrate . ",
+                readOnly: true
             }); </script>";
 
     }
 
     function echoSingleComments()
     {
-        global $db;
-        global $did;
+        global  $db;
+        global  $did;
             
-        $qry = "SELECT comment FROM jn222bd.dishsingle WHERE D_ID = " . $did;
+        $qry    = "SELECT comment FROM jn222bd.dishsingle WHERE D_ID = " . $did;
         $result = query_db($qry,$db);
 
         if(mysql_num_rows($result) > 0 ) {
@@ -219,13 +218,13 @@
 
     function echoGrpComments()
     {
-        global $db;
-        global $did;
-        global $result;
+        global  $db;
+        global  $did;
+        global  $result;
 
-        $name = mysql_result($result, 0, 'name');
+        $name   = mysql_result($result, 0, 'name');
             
-        $qry = "SELECT comment FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
+        $qry    = "SELECT comment FROM jn222bd.dishes as d, jn222bd.grouprate as gr, jn222bd.dishgroup as g WHERE d.D_ID = g.D_ID AND d.D_ID = " . $did . " AND g.G_ID = gr.G_ID";
         $result = query_db($qry,$db);
 
         if(mysql_num_rows($result) > 0 ) {

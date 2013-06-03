@@ -58,7 +58,10 @@ $(document).ready(function () {
 			}
 		});
 	});
-
 	$('#singlecomments .line:last').remove();
 	$('#grpcomments .line:last').remove();
+	if ($('.didRate').html() == 'Thanks for rating!') {
+		$('#group-wise').css("display", "none");
+		$('#individually').css("display", "none");
+	}
 });
